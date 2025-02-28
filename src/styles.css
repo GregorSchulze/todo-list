@@ -1,10 +1,8 @@
-/* Allgemeine Schriftarten und Box-Modell */
 * {
   font-family: "Roboto", sans-serif;
   box-sizing: border-box;
 }
 
-/* Hintergrund und Textfarbe des Body */
 body {
   background: linear-gradient(135deg, #2c3e50, #4ca1af);
   color: #fff;
@@ -15,7 +13,6 @@ body {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* Form-Styling */
 .new-item-form {
   display: flex;
   flex-direction: column;
@@ -29,9 +26,8 @@ body {
   gap: 0.5rem;
 }
 
-/* Button-Grundstile */
 .btn {
-  background: #0077b6;
+  background: #b60000;
   border: none;
   color: #fff;
   padding: 0.75rem 1.25rem;
@@ -51,7 +47,7 @@ body {
   gap: 0.5rem;
 }
 
-/* Spezifische Button-Stile */
+/* Button-Style */
 .btn.btn-danger {
   background: #d00000;
 }
@@ -68,7 +64,7 @@ body {
   background: #32cd32;
 }
 
-/* Eingabefeld für neue und bearbeitete Todos */
+/* Input Todos */
 .new-item-form input,
 .edit-input {
   width: 100%;
@@ -88,7 +84,6 @@ body {
   background: #0353a4;
 }
 
-/* Header-Formatierung */
 .header {
   font-size: 2rem;
   margin-top: 1rem;
@@ -97,7 +92,6 @@ body {
   font-weight: bold;
 }
 
-/* Liste und Checkbox-Styling */
 .list {
   margin: 0;
   padding: 0;
