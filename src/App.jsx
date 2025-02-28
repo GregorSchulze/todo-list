@@ -15,7 +15,7 @@ export default function App() {
     localStorage.setItem("ITEMS", JSON.stringify(todos));
   }, [todos]);
 
-  // New ToDO
+  // New ToDo
   function addTodo(title) {
     setTodos((currentTodos) => {
       return [
@@ -44,6 +44,9 @@ export default function App() {
       return currentTodos.filter((todo) => todo.id !== id);
     });
   }
+
+  // Edit
+  function editTodo() {}
 
   return (
     <>
