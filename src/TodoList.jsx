@@ -1,8 +1,16 @@
 import { TodoItem } from "./TodoItem";
 
-export function TodoList({ todos, toggleToDo, deleteTodo }) {
+export function TodoList({
+  todos,
+  toggleToDo,
+  deleteTodo,
+  saveEdit,
+  toggleEdit,
+  editingValue,
+  setEditingValue,
+}) {
   return (
-    <ul className="list">
+    <ul className="">
       {todos.length === 0 && "No Todos"}
       {todos.map((todo) => {
         return (
@@ -11,6 +19,10 @@ export function TodoList({ todos, toggleToDo, deleteTodo }) {
             key={todo.id}
             toggleToDo={toggleToDo}
             deleteTodo={deleteTodo}
+            saveEdit={saveEdit}
+            toggleEdit={toggleEdit}
+            editingValue={editingValue}
+            setEditingValue={setEditingValue}
           />
         );
       })}

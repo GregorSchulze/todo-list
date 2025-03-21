@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
-import "./styles.css";
+// import "./styles.css";
 import { NewTodoForm } from "./NewTodoForm";
 import { TodoList } from "./TodoList";
+import "bootstrap";
 
 export default function App() {
+  const [newItem, setNewItem] = useState("");
+  const [editingValue, setEditingValue] = useState("");
   const [todos, setTodos] = useState(() => {
     const localValue = localStorage.getItem("ITEMS"); // Überprüft den LocalStorage. Existiert ein Wert, wird deser gespeichert
     if (localValue == null) return [];
@@ -20,9 +23,10 @@ export default function App() {
     setTodos((currentTodos) => {
       return [
         ...currentTodos,
-        { id: crypto.randomUUID(), title, completed: false },
+        { id: crypto.randomUUID(), title, completed: false, isEditing: false },
       ];
     });
+    setNewItem("");
   }
 
   // Toggle
@@ -45,14 +49,44 @@ export default function App() {
     });
   }
 
-  // Edit
-  function editTodo() {}
+  // Toggle Edit
+  function toggleEdit(id, currentTitle) {
+    setTodos((currentTodos) =>
+      currentTodos.map((todo) => {
+        if (todo.id === id) {
+          return { ...todo, isEditing: true };
+        }
+        return todo;
+      })
+    );
+    setEditingValue(currentTitle);
+  }
+
+  // Save Edited Title
+  function saveEdit(id) {
+    setTodos((currentTodos) =>
+      currentTodos.map((todo) => {
+        if (todo.id === id) {
+          return { ...todo, title: editingValue, isEditing: false };
+        }
+        return todo;
+      })
+    );
+    setEditingValue("");
+  }
 
   return (
     <>
       <NewTodoForm onSubmit={addTodo} />
-      <h1 className="header">ToDo List</h1>
-      <TodoList todos={todos} toggleToDo={toggleToDo} deleteTodo={deleteTodo} />
+      <TodoList
+        todos={todos}
+        toggleToDo={toggleToDo}
+        deleteTodo={deleteTodo}
+        saveEdit={saveEdit}
+        toggleEdit={toggleEdit}
+        editingValue={editingValue}
+        setEditingValue={setEditingValue}
+      />
     </>
   );
 }

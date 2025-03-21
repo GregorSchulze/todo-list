@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { IoIosAddCircleOutline } from "react-icons/io";
 
 export function NewTodoForm({ onSubmit }) {
   const [newItem, setNewItem] = useState("");
@@ -14,17 +15,24 @@ export function NewTodoForm({ onSubmit }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="new-item-form">
-      <div className="form-row">
-        <label>New Item</label>
-        <input
-          value={newItem}
-          onChange={(e) => setNewItem(e.target.value)}
-          type="text"
-          id="item"
-        />
+    <form onSubmit={handleSubmit} className="mb-3">
+      <div className="">
+        <div className="">
+          <div className="">
+            <input
+              value={newItem}
+              onChange={(e) => setNewItem(e.target.value)}
+              type="text"
+              id="item"
+              placeholder="Enter an activity..."
+              className=""
+            />
+            <button className="" type="submit">
+              <IoIosAddCircleOutline className="" />
+            </button>
+          </div>
+        </div>
       </div>
-      <button className="btn">Add</button>
     </form>
   );
 }
