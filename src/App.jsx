@@ -7,7 +7,7 @@ export default function App() {
   const [newItem, setNewItem] = useState("");
   const [editingValue, setEditingValue] = useState("");
   const [todos, setTodos] = useState(() => {
-    const localValue = localStorage.getItem("ITEMS"); // Überprüft den LocalStorage. Existiert ein Wert, wird deser gespeichert
+    const localValue = localStorage.getItem("ITEMS"); // Überprüft den LocalStorage. Existiert ein Wert, wird dieser gespeichert
     if (localValue == null) return [];
     return JSON.parse(localValue);
   });
