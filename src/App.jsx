@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
-// import "./styles.css";
+import "./styles.css";
 import { NewTodoForm } from "./NewTodoForm";
 import { TodoList } from "./TodoList";
-import "bootstrap";
 
 export default function App() {
   const [newItem, setNewItem] = useState("");

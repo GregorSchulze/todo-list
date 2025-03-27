@@ -15,23 +15,24 @@ export function TodoItem({
   setEditingValue,
 }) {
   return (
-    <li className="">
-      <div className="">
-        <div className="">
-          <input
-            className=""
-            type="checkbox"
-            checked={completed}
-            onChange={(e) => toggleToDo(id, e.target.checked)}
-            id={`todo-${id}`}
-          />
-          <label className="" htmlFor={`todo-${id}`}>
-            {!isEditing && <span>{title}</span>}
-          </label>
-        </div>
+    <li className="bg-white m-8 p-4 rounded-xl shadow-lg border border-gray-200 flex justify-between items-center">
+      <div className="min-w-0 flex items-center">
+        <input
+          className="mr-4 rounded cursor-pointer size-5"
+          type="checkbox"
+          checked={completed}
+          onChange={(e) => toggleToDo(id, e.target.checked)}
+          id={`todo-${id}`}
+        />
+        <label
+          className={`truncate ${completed ? "line-through text-gray-400" : "text-gray-800"}`}
+          htmlFor={`todo-${id}`}
+        >
+          {!isEditing && <span>{title}</span>}
+        </label>
         {isEditing && (
           <input
-            className=""
+            className="truncate border border-gray-300 rounded-lg"
             type="text"
             value={editingValue}
             onChange={(e) => setEditingValue(e.target.value)}
@@ -39,27 +40,27 @@ export function TodoItem({
         )}
       </div>
 
-      <div>
+      <div className="flex gap-2 self-end sm-self-auto">
         {isEditing ? (
           <button
             onClick={() => saveEdit(id)}
-            className="btn btn-success btn-sm me-2"
+            className="p-2 bg-green-500 hover:bg-green-600 text-white rounded-lg transition-colors"
           >
-            <FaRegSave className="icon" />
+            <FaRegSave />
           </button>
         ) : (
           <button
             onClick={() => toggleEdit(id, title)}
-            className="btn btn-primary btn-sm me-2"
+            className="p-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors"
           >
-            <FaEdit className="icon" />
+            <FaEdit />
           </button>
         )}
         <button
           onClick={() => deleteTodo(id)}
-          className="btn btn-danger btn-sm"
+          className="p-2 bg-red-500 hover:bg-red-600 text-white rounded-lg transition-colors"
         >
-          <FaRegTrashAlt className="icon" />
+          <FaRegTrashAlt />
         </button>
       </div>
     </li>

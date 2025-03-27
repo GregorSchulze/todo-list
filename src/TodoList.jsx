@@ -10,10 +10,14 @@ export function TodoList({
   setEditingValue,
 }) {
   return (
-    <ul className="">
-      {todos.length === 0 && "No Todos"}
-      {todos.map((todo) => {
-        return (
+    <div className="p-4 sm:px-6 w-full">
+      <ul className="mx-auto w-full max-w-md md:max-w-xl lg:max-w-2xl">
+        {todos.length === 0 && (
+          <p className="text-center text-gray-500 p-4">
+            No todos yet. Add one!
+          </p>
+        )}
+        {todos.map((todo) => (
           <TodoItem
             {...todo}
             key={todo.id}
@@ -24,8 +28,8 @@ export function TodoList({
             editingValue={editingValue}
             setEditingValue={setEditingValue}
           />
-        );
-      })}
-    </ul>
+        ))}
+      </ul>
+    </div>
   );
 }
