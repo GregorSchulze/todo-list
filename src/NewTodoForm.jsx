@@ -24,7 +24,7 @@ export function NewTodoForm({ onSubmit }) {
 
       <form
         onSubmit={handleSubmit}
-        className="mx-auto w-full max-w-md md:max-w-xl lg:max-w-2xl"
+        className="mx-auto w-full rounded-lg max-w-md md:max-w-xl lg:max-w-2xl bg-white"
       >
         <div className="flex shadow-lg rounded-lg overflow-hidden">
           <input
