@@ -6,8 +6,8 @@ export function TodoList({
   deleteTodo,
   saveEdit,
   toggleEdit,
-  editingValue,
-  setEditingValue,
+  editTitle,
+  onEditTitleChange,
 }) {
   return (
     <div className="p-4 sm:px-6 w-full">
@@ -25,8 +25,8 @@ export function TodoList({
             deleteTodo={deleteTodo}
             saveEdit={saveEdit}
             toggleEdit={toggleEdit}
-            editingValue={editingValue}
-            setEditingValue={setEditingValue}
+            editTitle={editTitle}
+            onEditTitleChange={onEditTitleChange}
           />
         ))}
       </ul>

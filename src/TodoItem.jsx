@@ -11,8 +11,8 @@ export function TodoItem({
   isEditing,
   saveEdit,
   toggleEdit,
-  editingValue,
-  setEditingValue,
+  editTitle,
+  onEditTitleChange,
 }) {
   return (
     <li className="bg-white m-8 p-4 rounded-xl shadow-lg border border-gray-200 flex justify-between items-center">
@@ -32,10 +32,10 @@ export function TodoItem({
         </label>
         {isEditing && (
           <input
-            className="truncate border border-gray-300 rounded-lg"
+            className="truncate border border-gray-300 rounded-lg w-auto"
             type="text"
-            value={editingValue}
-            onChange={(e) => setEditingValue(e.target.value)}
+            value={editTitle}
+            onChange={(e) => onEditTitleChange(id, e.target.value)}
           />
         )}
       </div>

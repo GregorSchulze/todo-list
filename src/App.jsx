@@ -5,7 +5,6 @@ import { TodoList } from "./TodoList";
 
 export default function App() {
   const [newItem, setNewItem] = useState("");
-  const [editingValue, setEditingValue] = useState("");
   const [todos, setTodos] = useState(() => {
     const localValue = localStorage.getItem("ITEMS"); // Überprüft den LocalStorage. Existiert ein Wert, wird dieser gespeichert
     if (localValue == null) return [];
@@ -22,7 +21,13 @@ export default function App() {
     setTodos((currentTodos) => {
       return [
         ...currentTodos,
-        { id: crypto.randomUUID(), title, completed: false, isEditing: false },
+        {
+          id: crypto.randomUUID(),
+          title,
+          completed: false,
+          isEditing: false,
+          editTitle: title,
+        },
       ];
     });
     setNewItem("");
@@ -49,16 +54,26 @@ export default function App() {
   }
 
   // Toggle Edit
-  function toggleEdit(id, currentTitle) {
+  function toggleEdit(id) {
     setTodos((currentTodos) =>
       currentTodos.map((todo) => {
         if (todo.id === id) {
-          return { ...todo, isEditing: true };
+          return { ...todo, isEditing: true, editTitle: todo.title };
         }
         return todo;
       })
     );
-    setEditingValue(currentTitle);
+  }
+
+  function onEditTitleChange(id, newTitle) {
+    setTodos((currentTodos) =>
+      currentTodos.map((todo) => {
+        if (todo.id === id) {
+          return { ...todo, editTitle: newTitle };
+        }
+        return todo;
+      })
+    );
   }
 
   // Save Edited Title
@@ -66,12 +81,15 @@ export default function App() {
     setTodos((currentTodos) =>
       currentTodos.map((todo) => {
         if (todo.id === id) {
-          return { ...todo, title: editingValue, isEditing: false };
+          return {
+            ...todo,
+            title: todo.editTitle,
+            isEditing: false,
+          };
         }
         return todo;
       })
     );
-    setEditingValue("");
   }
 
   return (
@@ -83,8 +101,7 @@ export default function App() {
         deleteTodo={deleteTodo}
         saveEdit={saveEdit}
         toggleEdit={toggleEdit}
-        editingValue={editingValue}
-        setEditingValue={setEditingValue}
+        onEditTitleChange={onEditTitleChange}
       />
     </>
   );
